@@ -60,7 +60,7 @@ function start() {
     bundle=$($rubydir/gem environment gemdir)/bin/bundle
     $bundle  install
     echo "Starting Jekyll server"
-    $bundle exec "jekyll serve --port ${OPENSHIFT_JEKYLL_HTTP_PORT} --host ${OPENSHIFT_JEKYLL_IP}" > ${OPENSHIFT_JEKYLL_DIR}/logs/server.log 2>&1 &
+    $bundle exec "jekyll serve --port ${OPENSHIFT_JEKYLL_HTTP_PORT} --host ${OPENSHIFT_JEKYLL_IP}" 2>&1
 
       if ! ishttpup; then
           echo "Timed out waiting for http listening port"
