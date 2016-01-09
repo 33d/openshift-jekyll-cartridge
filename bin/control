@@ -57,7 +57,7 @@ function start() {
     cd $OPENSHIFT_REPO_DIR
     echo "Executing bundle install"
     $rubydir/gem install bundler
-    bundle=$($rubydir/gem environment gemdir)/bundle
+    bundle=$($rubydir/gem environment gemdir)/bin/bundle
     $bundle  install
     echo "Starting Jekyll server"
     $bundle exec "jekyll serve --port ${OPENSHIFT_JEKYLL_HTTP_PORT} --host ${OPENSHIFT_JEKYLL_IP}" > ${OPENSHIFT_JEKYLL_DIR}/logs/server.log 2>&1 &
