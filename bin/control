@@ -1,4 +1,4 @@
-#!/bin/bash -eu
+#!/bin/bash -eux
 
 source $OPENSHIFT_CARTRIDGE_SDK_BASH
 JEKYLL_PID_FILE=${OPENSHIFT_HOMEDIR}/app-root/runtime/jekyll.pid
