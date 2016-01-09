@@ -48,7 +48,7 @@ function start() {
   else
       env_dir=$OPENSHIFT_JEKYLL_DIR/env
       ruby=$(scl enable ruby200 "which ruby")
-      bundle=$(which bundle)
+      rubydir=$(dirname $ruby)
       dirname $ruby > $env_dir/OPENSHIFT_RUBY_PATH_ELEMENT
       ld_path=$(LD_LIBRARY_PATH="" scl enable ruby200 "printenv LD_LIBRARY_PATH")
       set_env_var 'OPENSHIFT_RUBY_LD_LIBRARY_PATH_ELEMENT' $ld_path $env_dir
@@ -56,9 +56,11 @@ function start() {
 
     cd $OPENSHIFT_REPO_DIR
     echo "Executing bundle install"
-    $ruby $bundle  install
+    $rubydir/gem install bundler
+    bundle=$($rubydir/gem environment gemdir)/bundle
+    $bundle  install
     echo "Starting Jekyll server"
-    $ruby $bundle exec "jekyll serve --port ${OPENSHIFT_JEKYLL_HTTP_PORT} --host ${OPENSHIFT_JEKYLL_IP}" > ${OPENSHIFT_JEKYLL_DIR}/logs/server.log 2>&1 &
+    $bundle exec "jekyll serve --port ${OPENSHIFT_JEKYLL_HTTP_PORT} --host ${OPENSHIFT_JEKYLL_IP}" > ${OPENSHIFT_JEKYLL_DIR}/logs/server.log 2>&1 &
 
       if ! ishttpup; then
           echo "Timed out waiting for http listening port"
