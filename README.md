@@ -8,7 +8,7 @@ If you find any issues, please log them in the [issues](https://github.com/kazuh
 
 1.)  Create a new application on OpenShift using this command:
 
-    rhc app create jekyll https://raw.github.com/kazuhisya/openshift-jekyll-cartridge/master/metadata/manifest.yml
+    rhc app create jekyll 'http://cartreflect-claytondev.rhcloud.com/github/33d/openshift-jekyll-cartridge
 
 2.)  Git clone the repository that is associated with your OpenShift gear to your local machine  (the create command should do this for you)
 3.)  Change directory (cd) into the cloned repository and run the following commands (you can also use bundle install to install the gems from the Gemfile)
